@@ -1,0 +1,12 @@
+apiVersion: "v1"
+kind: "Pod"
+metadata:
+  labels:
+    jenkins/jenkins-jenkins-agent: "true"
+    jenkins/label: "jenkins-jenkins-agent"
+spec:
+  containers:
+  - name: vessl
+    image: python:3.9.16-slim-buster
+    command: ["cat"]
+    tty: true

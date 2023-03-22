@@ -1,0 +1,5 @@
+vessl[media]>=0.1.83
+numpy>=1.21.4
+pandas==1.5.2
+torch==1.13.1,<2.0.0
+torchvision>=0.14.1
