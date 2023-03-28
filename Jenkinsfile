@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git(branch: 'main', credentialsId: 'git-repository-credential', url: 'https://github.com/vessl-ai/vessl-jenkins-example.git')
+        git(branch: 'main', credentialsId: 'github-repository-credential	', url: 'https://github.com/vessl-ai/vessl-jenkins-example.git')
       }
     }
 
