@@ -9,26 +9,22 @@ pipeline {
 
     stage('Create vessl remote experiment') {
       steps {
-        container(name: 'vessl') {
-          sh 'pip install -r requirements.txt'
-          sh 'python -u vessl_run_experiment.py'
-          script {
-            expr_number = readFile('vessl-experiment-number.txt').trim()
-            println "Experiment number: ${expr_number}"
-            VESSL_EXPERIMENT_NUMBER = "${expr_number}"
-          }
+        sh 'pip install -r requirements.txt'
+        sh 'python -u vessl_run_experiment.py'
+        script {
+          expr_number = readFile('vessl-experiment-number.txt').trim()
+          println "Experiment number: ${expr_number}"
+          VESSL_EXPERIMENT_NUMBER = "${expr_number}"
         }
       }
     }
 
     stage('Register model') {
       steps {
-        container(name: 'vessl') {
-          script {
-            println "Experiment number to register: ${VESSL_EXPERIMENT_NUMBER}"
-          }
-          sh 'VESSL_EXPERIMENT_NUMBER=$(cat vessl-experiment-number.txt) python -u vessl_model_register.py'
+        script {
+          println "Experiment number to register: ${VESSL_EXPERIMENT_NUMBER}"
         }
+        sh 'VESSL_EXPERIMENT_NUMBER=$(cat vessl-experiment-number.txt) python -u vessl_model_register.py'
       }
     }
 
