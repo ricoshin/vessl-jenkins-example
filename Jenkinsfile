@@ -1,11 +1,4 @@
 pipeline {
-  agent {
-    kubernetes {
-      label 'vessl-jenkins'
-      yamlFile 'jenkins-agent.yaml'
-    }
-
-  }
   stages {
     stage('Checkout') {
       steps {
